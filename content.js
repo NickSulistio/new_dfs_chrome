@@ -121,7 +121,7 @@ function analyzeRows() {
     headerRow.style.backgroundColor = '#f5f5f5';
     headerRow.style.fontWeight = 'bold';
 
-    const headers = ['Name', 'Odds', 'Win Percentage', 'Kelly', 'Bet Size'];
+    const headers = ['Prop Type', 'Market', 'Odds', 'Win Percentage', 'Kelly', 'Bet Size'];
     headers.forEach(headerText => {
         const th = document.createElement('th');
         th.style.padding = '10px';
@@ -142,15 +142,19 @@ function analyzeRows() {
             const resultRow = document.createElement('tr');
             resultRow.style.borderBottom = '1px solid #eee';
 
-            let name = '';
+            let propType = '';
+            let market = ''
             let odds = '';
             let winPercentage = '';
 
-            [1, 6, 7].forEach((cellIndex, i) => {
-                if (cellIndex === 1) {
-                    const specificP = cells[cellIndex].querySelector('p.text-sm.text-white.__className_179fbf');
-                    name = specificP ? specificP.textContent.trim() : cells[cellIndex].textContent.trim();
-                } else if (cellIndex === 6) {
+            [3, 4, 6, 7].forEach((cellIndex, i) => {
+                if (cellIndex === 3) {
+                    propType = cells[cellIndex].textContent.trim();
+                }
+                else if (cellIndex === 4) {
+                    market = cells[cellIndex].textContent.trim();
+                }
+                else if (cellIndex === 6) {
                     odds = cells[cellIndex].textContent.trim();
                 } else if (cellIndex === 7) {
                     winPercentage = cells[cellIndex].textContent.trim();
@@ -165,7 +169,8 @@ function analyzeRows() {
                 return cell;
             };
 
-            resultRow.appendChild(createCell(name));
+            resultRow.appendChild(createCell(propType));
+            resultRow.appendChild(createCell(market));
             resultRow.appendChild(createCell(odds));
             resultRow.appendChild(createCell(winPercentage));
 
