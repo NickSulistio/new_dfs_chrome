@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "DFS Optimizer Extension",
+  "version": "1.0",
+  "description": "Enhances DFS Optimizer pages",
+  "permissions": ["activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://dgfantasy.com/dfs-optimizer*",
+        "https://dgfantasy.com/dfs-optimizer/prizepicks*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}
